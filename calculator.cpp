@@ -22,66 +22,82 @@ double fact(double num1){
 	}
 	return b;
 }
+double rad(double num1){
+	double rad;
+	rad = num1*3.14/180;
+	return rad;
+}
 
 int main(){
 	
 	double num1;
 	double num2;
-	char op;
+	int op;
+	int choice=0;
+	
 	up:
-	printf("\n This is a calculator of two numbers \n \n INSTRUCTIONS :  \n");
-	printf("\n\ntype '+' for sum    *    type '-' for deference   *   type '*' for multiply    *   type '/' for division ");
-	printf("\n\ntype c for cos of one number   *   type s for sin of one number   *    or type t for tan of one number");
-	printf("\n\ntype a for 1/cos of one number    *   type b for 1/sin of one number   *   or type d for 1/tan of one number\n");
-	printf("\ntype 'e' for square of a number     *    type 'f' for cube of a number    *    type ! for factorisation of a number\n");
 	
-	printf("\n enter the operation : ");
-	scanf("%c" , &op );
+	printf("      ************************************************************************************************************");	
+	printf("\n \n                                       *     CALCULATOR INSTRUCTIONS       *\n\n");
+	printf("                    *******************************************************************************");
+	printf("\n\ntype '1' for sum    *    type '2' for deference   *   type '3' for multiply    *   type '4' for division ");
+	printf("\ntype '5' for square of a number    *    type '6' for cube of a number    *    type '7' for factorisation of a number ");
+	printf("\ntype '8' for cos of one number     *    type '9' for sin of one number   *    type '10' for tan of one number");
+	printf("\ntype '11' for 1/cos of one number  *  type '12' for 1/sin of one number  *   or type '13' for 1/tan of one number\n");
+	printf("\n      ************************************************************************************************************\n");
 	
-	if (op== '+' || op== '-'||op== '*'||op== '/'){
+	printf("\n enter the operation you want : ");
+	scanf("%d" , &op );
+	
+	if (op <= 4 && op >0){
 		
 		printf("enter the first number :");
 		scanf("%lf" , &num1);
 		printf("enter the second number :");
-		scanf("%lf" , &num2);
-		
-	}else{
+		scanf("%lf" , &num2);		
+	}else if( op > 4 && op < 14){
 		printf("enter the number :");
 		scanf("%lf" , &num1); 
+	}else{
+		printf("\n please enter one of the operations mentioned above\n");
 	}
 	
 	
-	if (op =='+'){
-		printf("\nthe sum of %.2f and %.2f is : %.2f\n  " , num1 ,num2 , num1 + num2);
-	}else if(op =='-'){
-		printf("\nthe deference between %.2f and %.2f is : %.2f\n " , num1 ,num2 , num1 - num2);
-	}else if(op =='*'){
-		printf("\nthe multiplication of %.2f and %.2f is : %.2f\n  " , num1 ,num2 , num1 * num2);
-	}else if(op =='/'){
-		printf("\nthe division of %.2f on %.2f is : %.2f\n " , num1 ,num2 , num1 / num2);	
-	}else if(op =='c'){
-		printf("\nthe cos of %.2f is : %.2f \n " , num1  , cos(num1));
-	}else if(op =='s'){
-		printf("\nthe sin of %.2f is : %.2f  \n" , num1  , sin(num1));
-	}else if(op =='t'){
-		printf("\nthe tan of %.2f is : %.2f  \n" , num1  , tan(num1));
-	}else if(op =='a'){
-		printf("\nthe 1/cos of %.2f is : %.2f \n " , num1  , 1/cos(num1));
-	}else if(op =='b'){
-		printf("\nthe 1/sin of %.2f is : %.2f  \n" , num1  , 1/sin(num1));
-	}else if(op =='d'){
-		printf("\nthe 1/tan of %.2f is : %.2f  \n" , num1  , 1/tan(num1));
-	}else if(op =='f'){
-		printf("\n the cube of %.2f is : %.2f\n", num1 , cube1(num1));
-	}else if(op =='e'){
-		printf("\n the sauare of %.2f is : %.2f\n", num1 , square1(num1));
-	}else if(op =='!'){
-		printf("\n the ! of %.2f is : %.2f\n", num1 , fact(num1));
-	}else {
-		printf("please enter one of the operations mentioned above\n");
+	switch(op){
+		case 1: printf("\nthe sum of %.2f and %.2f is : %.2f\n  " , num1 ,num2 , num1 + num2);  break;
+		case 2: printf("\nthe deference between %.2f and %.2f is : %.2f\n " , num1 ,num2 , num1 - num2); break;
+		case 3: printf("\nthe multiplication of %.2f and %.2f is : %.2f\n  " , num1 ,num2 , num1 * num2); break;
+		case 4:
+			if(num2 != 0){
+				printf("\nthe division of %.2f on %.2f is : %.2f\n " , num1 ,num2 , num1 / num2);	
+			}else{
+				printf("\n you can't divide on zero\n ");
+			} break;
+		case 5: printf("\n the sauare of %.2f is : %.2f\n", num1 , square1(num1)); break;
+		case 6: printf("\n the cube of %.2f is : %.2f\n", num1 , cube1(num1)); break;
+		case 7: printf("\n the ! of %.2f is : %.2f\n", num1 , fact(num1)); break;
+		case 8: printf("\nthe cos of %.2f is : %.2f \n " , num1  , cos(rad(num1))); break;
+		case 9: printf("\nthe sin of %.2f is : %.2f  \n" , num1  , sin(rad(num1))); break;
+		case 10: printf("\nthe tan of %.2f is : %.2f  \n" , num1  , tan(rad(num1))); break;
+		case 11: printf("\nthe 1/cos of %.2f is : %.2f \n " , num1  , 1/cos(rad(num1))); break;
+		case 12: printf("\nthe 1/sin of %.2f is : %.2f  \n" , num1  , 1/sin(rad(num1))); break;
+		case 13: printf("\nthe 1/tan of %.2f is : %.2f  \n" , num1  , 1/tan(rad(num1))); break;
+		default:  break;
+	}
+	printf("\n\n      ***********************************************************************************************************\n");
+	printf("\n if you want to restart type '1' \n\n if you want to exit type anything else \n");
+	scanf("%d",&choice);
+	if (choice == 1){
+		system("CLS");
+		goto up;
+	}else{
+		system("CLS");
+		printf("\n\n************************************************************************************************************************\n");
+		printf("\n********************************************            THANK YOU             ******************************************\n");
+		printf("\n************************************************************************************************************************\n");
 	}
 	
-	printf("\n************************************\n**********   THANK YOU  ************ \n************************************\n\n\n\n\n");
-	goto up;	
+
+		
  return 0;
 }
