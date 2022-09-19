@@ -1,0 +1,15 @@
+synthroid
+2
+130
+crestor
+3
+43
+ventolin
+1
+55
+doliprane
+2
+30
+metformin
+3
+40
