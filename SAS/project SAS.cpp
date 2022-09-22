@@ -91,6 +91,8 @@ int main()
 	int prixTTC[n+5];
 	produit trash;
 	
+//		l'extraction des produit:	
+	
 		FILE * list = fopen("list.txt","r");
 			for(i=0; i <=5 ; i++){			
 			
@@ -103,16 +105,8 @@ int main()
 			}
 
         fclose(list);
-        
-        
-                
-/*	    FILE * vide = fopen("enregistrement.txt","w");
-					
-			fprintf(vide ,"");
-						
-		fclose(vide);
-*/
 
+//	la date d'aujourd'hui:
         a.date = date();
 
         for(i=0; i < n+5 ; i++){
@@ -121,7 +115,6 @@ int main()
                 	
   			pr[i].code = 1 + i;
       	 }
-
 			
 	menu:	
 	system("CLS");	
@@ -149,7 +142,7 @@ int main()
 	}
     
     
-	    
+//	 Ajouter des produits  : 
     if(choix == 1){
 		system("CLS");
         b:
@@ -171,7 +164,7 @@ int main()
 	   			goto c;
 			}
 			d:
-            printf("Donnez la quantite : "); 
+            printf("Donnez la quantitee : "); 
             if(scanf("%d",&pr[i].quantite)==0){
    				fflush(stdin);
 	   			goto d;
@@ -192,9 +185,10 @@ int main()
 		printf("SVP entre un numbre entre 0 et 100");
 	}
 	
+//	le trie:
 	f:
 	printf("voulez-vous trier la liste ?\n");
-	printf("tapez [1] puor oui , pour non tapez autre chose ");
+	printf("tapez [1] pour oui , pour non tapez autre chose ");
     if(scanf("%d",&choixA)==0){
    		fflush(stdin);
    		goto f;
@@ -204,7 +198,7 @@ int main()
 		
 	g:
 	printf("comment voulez-vous trier la liste\n");
-	printf("si vous souhaitez trier la liste par ordre alphabétique tapez [1]\n ou si vous souhaitez la trier en fonction de prix tapez [2]: \n");	
+	printf("si vous souhaitez trier la liste par ordre alphabetique tapez [1]\n ou si vous souhaitez la trier en fonction de prix tapez [2]: \n");	
 	if(scanf("%d",&choixDeTrie)==0){
    		fflush(stdin);
 		goto g;
@@ -258,7 +252,8 @@ int main()
 		if(choixDeM == 1){
 			goto menu;
 		}
-		
+
+//	l'achat :
 	}else if(choix == 2){
 		system("CLS");
 		for(i=0; i<(n+5)-num; i++)
@@ -318,7 +313,8 @@ int main()
 		if(choixDeM == 1){
 			goto menu;
 		}
-				
+
+//	recherche:				
 	}else if(choix == 3){
 		l:
 		printf("\nsi vous souhaitez rechercher par code tapez [1] ou si vous souhaitez rechercher par quantitee tapez [2]\n");
@@ -365,10 +361,10 @@ int main()
 			}
 			if(code = pr[r-1].quantite){
 				system("CLS");
-				printf("\nle nom : %s \nson prix : %dDH\n\nson quantite : %d\n\n", pr[r-1].nom,pr[r-1].prix,pr[r-1].quantite);
+				printf("\nle nom : %s \nson prix : %dDH\n\nson quantitee : %d\n\n", pr[r-1].nom,pr[r-1].prix,pr[r-1].quantite);
 	
 			}else{		
-				printf("\nplease enter a quantite from the list");
+				printf("\nplease enter a quantitee from the list");
 			}		
 		
 		}
@@ -381,12 +377,14 @@ int main()
 		if(choixDeM == 1){
 			goto menu;
 		}
+		
+//	Etat du stock:		
 	}else if(choix == 4){
 			system("CLS");
 			printf("les proudit avec la quantite  inferieure a 3 sont :\n");
 		for(i=0; i<(n+5)-num ; i++){
 		if(pr[i].quantite <3){
-			printf("\nle nom : %s \nson prix : %dDH\n\nson quantite : %d\n\n", pr[i].nom,pr[i].prix,pr[i].quantite);
+			printf("\nle nom : %s \nson prix : %dDH\n\nson quantitee : %d\n\n", pr[i].nom,pr[i].prix,pr[i].quantite);
 		}
 		}
 		o:
@@ -407,7 +405,8 @@ int main()
 		if(choixDeM == 1){
 			goto menu;
 		}
-		
+
+//	pour alimenter le stock:		
 	}else if(choix ==5){
 		
 			alum:
@@ -417,7 +416,7 @@ int main()
 			{
 				prixTTC[i] = pr[i].prix + (pr[i].prix*0.15);	
 				printf("les informations du produit %d :\n\n",i+1);
-				printf("son nom : %s \nson prix : %dDH\n\nson prix TTC : %dDH\n\nson code : %d\n\net son quantite : %d\n\n", pr[i].nom,pr[i].prix, prixTTC[i] ,pr[i].code,pr[i].quantite);
+				printf("son nom : %s \nson prix : %dDH\n\nson prix TTC : %dDH\n\nson code : %d\n\net son quantitee : %d\n\n", pr[i].nom,pr[i].prix, prixTTC[i] ,pr[i].code,pr[i].quantite);
 			}
 			q:
 			printf("enter le code de produit vous souhaitez augmenter :\n");
@@ -427,7 +426,7 @@ int main()
 			}
 			if(code<=n+5 && code >0){
 				r:
-				printf("\nentrez la quantité que vous souhaitez ajouter :\n");				
+				printf("\nentrez la quantitee que vous souhaitez ajouter :\n");				
 				if(scanf("%d", &quant)==0){
  					fflush(stdin);
 					goto r;
@@ -438,7 +437,7 @@ int main()
 						r= i+1;	
 						pr[r-1].quantite += quant;
 						system("CLS");
-						printf("\nla quantite de %smaintenant est : %d\n",pr[r-1].nom,pr[r-1].quantite);
+						printf("\nla quantitee de %smaintenant est : %d\n",pr[r-1].nom,pr[r-1].quantite);
 					}
 				}
 			}else{
@@ -454,7 +453,8 @@ int main()
 		if(choixDeM == 1){
 			goto menu;
 		}
-		
+
+//	la supprimation:		
 		}else if(choix == 6){
 			
 			system("CLS");
@@ -498,7 +498,7 @@ int main()
 			for(i=0; i<(n+5)-num; i++)
 			{
 				printf("les informations du produit %d :\n\n",i+1);
-				printf("son nom : %s \nson prix : %dDH\n\n\nson code : %d\net son quantite : %d\n\n", pr[i].nom,pr[i].prix,pr[i].code,pr[i].quantite);
+				printf("son nom : %s \nson prix : %dDH\n\n\nson code : %d\net son quantitee : %d\n\n", pr[i].nom,pr[i].prix,pr[i].code,pr[i].quantite);
 			}
 			
 		}
@@ -511,6 +511,8 @@ int main()
 		if(choixDeM == 1){
 			goto menu;
 		}
+		
+//	Statistique de vente:		
 		}else if(choix ==7){
 			
 				FILE * enrg1 = fopen("enregistrement.txt","r");
@@ -576,6 +578,7 @@ int main()
 			goto menu;
 		}
 		
+//	sortir:		
 		}else if(choix == 8){
 			goto end;
 			
